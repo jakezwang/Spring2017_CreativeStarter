@@ -1,0 +1,38 @@
+
+<div class="panel panel-default" ng-init="serviceCCCtrl.init()">
+	<div class="panel-heading">
+		Your role is <button type="button" class="btn btn-info">{{globals.userSession.role}} </button> - 
+		- You are viewing payments by Credit Card ID: <button type="button" class="btn btn-info">{{ccIdForService}} </button>
+	</div>
+	
+	
+	
+	<div class="panel-body table-responsive">
+		<table class="table table-hover">
+			<thead>
+			     <tr class="success">
+			       <th>Service #</th>
+			       <th>Payment Amount</th>
+			       <th>Payment Date</th>
+			       <th>Payment Status</th>
+			       <th>Project #</th>
+				 </tr>
+			</thead>
+		    <tbody>
+		      <tr ng-repeat="c in serviceCCCtrl.services">
+		        <td>{{c.paymentId}}</td>
+		        <td>{{c.paymentAmount | currency}}</td>
+		        <td>{{c.paymentDate | date}}</td>
+		        <td>{{c.paymentStatus}}</td>
+		        <td>{{c.projectId}}</td>
+		      </tr>
+		    </tbody>
+		</table>
+	</div>
+	
+	<div class="panel-footer">
+		<button type="button" class="btn btn-danger" ng-click="serviceCCCtrl.back()">Back </button>
+	</div>
+</div>
+ 
+

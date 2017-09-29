@@ -1,0 +1,230 @@
+
+
+<!------------------------------------- Manage Project ------------------------------------->
+Your role is <button type="button" class="btn btn-default">{{globals.userSession.role}} </button>
+
+<div id="editprojects" class="page-header" ng-init="dashboardCtrl.init(); dashboardCtrl.getCat()">
+	<div class="panel panel-default">
+	  	<div class="panel-heading">
+	  		<strong>Manage Your Projects</strong>
+	  	</div>
+	  	<div class="panel-body table-responsive">
+	  		<table class="table table-hover">
+				<thead>
+			      <tr class="success">
+			        <th>#</th>
+			        <th>Project Name</th>
+			        <th>Description</th>
+			        <th>Amount Goal</th>
+			        <th>Start Date</th>
+			        <th>End Date</th>
+			        <th style="width: 10%">Category</th>
+			        <th></th>
+			        <th></th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr ng-repeat="p in dashboardCtrl.projects" >
+			        <td>{{p.projectId}}</td>
+			        <td ng-click="dashboardCtrl.viewService(p.projectId)">{{p.projectName}}</td>
+			        <td>{{p.projectDesc}}</td>
+			        <td>{{p.amountGoal | currency}}</td>
+			        <td>{{p.dayStart | date}}</td>
+			        <td>{{p.dayEnd | date}}</td>
+			        <td>{{p.category}}</td>
+			        <td>
+			        	<button type="button" class="btn btn-primary"
+			        	ng-click="dashboardCtrl.updateProject(p.projectId)">Update</button>
+			        </td>
+			        
+			        <td>
+			        	<button type="button"class="btn btn-danger"
+			        	ng-click="dashboardCtrl.deleteProject(p.projectId)">Delete</button>
+			        </td>
+			      </tr>
+			    </tbody>
+			    <tfoot>
+			    	<th></th>
+			        <th> <input class="form-control" ng-model="dashboardCtrl.inputs.projectName" placeholder="Name"/> </th>
+			        <th> <input class="form-control" ng-model="dashboardCtrl.inputs.projectDesc" placeholder="Description"/> </th>
+			        <th> <input class="form-control" ng-model="dashboardCtrl.inputs.amountGoal" type="number" placeholder="Number"/> </th>
+			        <th> <input class="form-control" ng-model="dashboardCtrl.inputs.dayStart" type="date" placeholder="MM/DD/YYYY"/> </th>
+			        <th> <input class="form-control" ng-model="dashboardCtrl.inputs.dayEnd" type="date" placeholder="MM/DD/YYYY"/> </th>
+			        
+			        <th>
+				        <select class="form-control" ng-model="dashboardCtrl.inputs.category">
+							<option ng-repeat="c in dashboardCtrl.categories" value="{{c.categoryName}}">{{c.categoryName}}</option>
+						</select> 
+					</th>
+			        <th>
+			        	<button type="button" class="btn btn-success"
+			        	ng-click="dashboardCtrl.addProject()">Add </button>
+			        </th>
+	
+			        <th></th>
+			    </tfoot>
+			</table>
+		</div>
+	</div>
+</div>
+
+<!------------------------------------- Manage Credit Cards ------------------------------------->
+
+<div id="editccs" class="page-header" ng-init="dashboardCtrl.init1()">
+	<div class="panel panel-default">
+	  	<div class="panel-heading">
+	  		<strong>Manage Your Credit Cards</strong>
+	  	</div>
+	  	<div class="panel-body table-responsive">
+	  		<table class="table table-hover">
+				<thead>
+			      <tr class="success">
+			        <th>#</th>
+			        <th>Card Number</th>
+			        <th>Card Full Name</th>
+			        <th>Card Type</th>
+			        <th>Expire Date</th>
+			        <th>Security</th>
+			        <th></th>
+			        <th></th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr ng-repeat="c in dashboardCtrl.ccs" >
+			        <td>{{c.cardId}}</td>
+			        <td ng-click="dashboardCtrl.viewService2(c.cardId)">{{c.cardNumber}}</td>
+			        <td>{{c.cardFullName}}</td>
+			        <td>{{c.cardType}}</td>
+			        <td>{{c.cardExpireDate | date}}</td>
+			        <td>{{c.cardSecurity}}</td> 
+			        <td>
+			        	<button type="button" class="btn btn-primary"
+			        	ng-click="dashboardCtrl.updateCC(c.ccId)">Update</button>
+			        </td>
+			        
+			        <td>
+			        	<button type="button"class="btn btn-danger"
+			        	ng-click="dashboardCtrl.deleteCC(c.ccId)">Delete</button>
+			        </td>
+			      </tr>
+			    </tbody>
+			    <tfoot>
+			    	<th></th>
+			        <th> <input class="form-control" type="number" ng-model="dashboardCtrl.inputsCC.cardNumber" placeholder="Credit Card Number"/> </th>
+			        <th> <input class="form-control" ng-model="dashboardCtrl.inputsCC.cardFullName" placeholder="Owner Name"/> </th>
+			        <th> 
+						<select class="form-control" ng-model="dashboardCtrl.inputsCC.cardType">
+							<option value="VISA">VISA</option>
+							<option value="VISA">Master</option>
+							<option value="VISA">AMEX</option>
+						</select> 
+					</th>
+					<th> <input class="form-control" type="date" ng-model="dashboardCtrl.inputsCC.cardExpireDate" placeholder="Card Expire Date"/> </th>
+					<th> <input class="form-control" type="number" ng-model="dashboardCtrl.inputsCC.cardSecurity" placeholder="Security Code"/> </th>
+			        <th>
+			        	<button type="button" class="btn btn-success"
+			        	ng-click="dashboardCtrl.addCC()">Add </button>
+			        </th>
+	
+			        <th></th>
+			    </tfoot>
+			</table>
+		</div>
+	</div>
+</div>
+
+<!------------------------------------- View and Donate Projects ------------------------------------->
+
+
+<div id="allprojects" ng-init="dashboardCtrl.init2()">
+	<div class="panel panel-default">
+	  	<div class="panel-heading">
+	  		<strong>All Projects
+	  	</div>
+	  	<div class="panel-body table-responsive">
+	  		<table class="table table-hover">
+				<thead>
+			      <tr class="success">
+			        <th>#</th>
+			        <th>Project Name</th>
+			        <th>Description</th>
+			        <th>Amount Goal</th>
+			        <th>Start Date</th>
+			        <th>End Date</th>
+			        <th>Category</th>
+			        <th></th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr ng-repeat="p in dashboardCtrl.allprojects" >
+			        <td>{{p.projectId}}</td>
+			        <td ng-click="dashboardCtrl.viewService(p.projectId)">{{p.projectName}}</td>
+			        <td>{{p.projectDesc}}</td>
+			        <td>{{p.amountGoal | currency}}</td>
+			        <td>{{p.dayStart | date}}</td>
+			        <td>{{p.dayEnd | date}}</td>
+			        <td>{{p.category}}</td>  
+			        <!-- ------------Donate Button here ---------------------->
+			      	<td>
+			        	<button type="button" class="btn btn-info"
+			        	ng-click="dashboardCtrl.donate(p.projectId)">Donate</button>
+			        </td>
+			      </tr>
+			      
+			      
+			    </tbody>
+			    
+			    <tfoot>
+			    	<th></th>
+			    	<th><input class="form-control" type="number" ng-model="dashboardCtrl.inputsKey.projectId"/>Which Project # </th></th>
+			    	<th><input class="form-control" type="number" ng-model="dashboardCtrl.inputsKey.ccId"/>Which Credit # </th></th>
+			    	<th><input class="form-control" type="number" ng-model="dashboardCtrl.inputsService.paymentAmount" placeholder="Amount"/> </th></th>
+			    	<th><input class="form-control" type="date" ng-model="dashboardCtrl.inputsService.paymentDate" placeholder="Pay Date"/> </th></th>
+			    	<th><input class="form-control" ng-model="dashboardCtrl.inputsService.paymentStatus" placeholder="Pay Status"/> </th></th>
+			    	<th>
+			        	<button type="button" class="btn btn-success"
+			        	ng-click="dashboardCtrl.addService(dashboardCtrl.inputsKey.projectId,dashboardCtrl.inputsKey.ccId)">Add </button>
+			        </th>
+			    </tfoot>
+			    
+			    
+			</table>
+		</div>
+	</div>
+</div>
+
+<!------------------------------------- View All Credit Cards ------------------------------------->
+
+<div id="allccs" ng-init="dashboardCtrl.init3()">
+	<div class="panel panel-default">
+	  	<div class="panel-heading">
+	  		<strong>All Credit Cards
+	  	</div>
+	  	<div class="panel-body table-responsive">
+	  		<table class="table table-hover">
+				<thead>
+			      <tr class="success">
+			        <th>#</th>
+			        <th>Credit Number</th>
+			        <th>Card Full Name</th>
+			        <th>Card Type</th>
+			        <th>Expire Date</th>
+			        <th>Security Code</th>
+			        <th>UserId</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr ng-repeat="c in dashboardCtrl.allccs" ">
+			        <td>{{c.cardId}}</td>
+			        <td ng-click="dashboardCtrl.viewService2(c.cardId)">{{c.cardNumber}}</td>
+			        <td>{{c.cardFullName}}</td>
+			        <td>{{c.cardType}}</td>
+			        <td>{{c.cardExpireDate | date}}</td>
+			        <td>{{c.cardSecurity}}</td>
+			        <td>{{c.userId}}</td>  
+			      </tr>
+			    </tbody>
+			</table>
+		</div>
+	</div>
+</div>

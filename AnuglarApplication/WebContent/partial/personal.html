@@ -1,0 +1,35 @@
+<div ng-init="personalCtrl.init()">
+
+	<div class="">
+	  <h2>View and update your profile: </h2>
+	  <div class="list-group">
+	    <a class="list-group-item active">User Type: {{personalCtrl.ret.role}} </a>
+	    <a class="list-group-item active">Username: {{personalCtrl.ret.userName}}</a>
+	    <a class="list-group-item" data-toggle="modal" data-target="#firstName">First Name: {{personalCtrl.ret.firstName}} </a>
+	    <a class="list-group-item" data-toggle="modal" data-target="#myModal">Last Name: {{personalCtrl.ret.lastName}} </a>
+	    <a class="list-group-item" data-toggle="modal" data-target="#myModal">Email: {{personalCtrl.ret.email}} </a>
+	  </div>
+	</div>
+	
+	
+	<!-- Modal -->
+	  <div class="modal fade" id="firstName" role="dialog">
+	    <div class="modal-dialog">
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Change your profile</h4>
+	        </div>
+	        <div class="modal-body">
+	          <input class="form-control" ng-model="personalCtrl.profile.firstName"/>
+	          <button type="button" class="btn btn-primary" ng-click="personalCtrl.updateFirstName(personalCtrl.profile.firstName)">Update</button>
+	        </div>
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	  
+</div>

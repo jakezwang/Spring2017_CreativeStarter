@@ -1,0 +1,47 @@
+
+
+<!------------------------------------- View and Donate Projects ------------------------------------->
+
+
+<div id="allprojects" ng-init="dashboardCtrl.init2()">
+	<div class="panel panel-default">
+	  	<div class="panel-heading">
+	  		<strong>All Projects
+	  	</div>
+	  	<div class="panel-body table-responsive">
+	  		<table class="table table-hover">
+				<thead>
+			      <tr class="success">
+			        <th>#</th>
+			        <th>Project Name</th>
+			        <th>Description</th>
+			        <th>Amount Goal</th>
+			        <th>Start Date</th>
+			        <th>End Date</th>
+			        <th>Category</th>
+			        <th></th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr ng-repeat="p in dashboardCtrl.allprojects" >
+			        <td>{{p.projectId}}</td>
+			        <td ng-click="dashboardCtrl.viewService(p.projectId)">{{p.projectName}}</td>
+			        <td>{{p.projectDesc}}</td>
+			        <td>{{p.amountGoal | currency}}</td>
+			        <td>{{p.dayStart | date}}</td>
+			        <td>{{p.dayEnd | date}}</td>
+			        <td>{{p.category}}</td>  
+			        <!-- ------------Donate Button here ---------------------->
+			      	<td>
+			        	<button type="button" class="btn btn-info"
+			        	ng-click="dashboardCtrl.donate(p.projectId)">Donate</button>
+			        </td>
+			      </tr>
+			      
+			      
+			    </tbody>	    
+			</table>
+		</div>
+	</div>
+</div>
+

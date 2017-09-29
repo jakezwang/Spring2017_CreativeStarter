@@ -1,0 +1,72 @@
+<div class="page-header" ng-init="dashboardCtrl.init(); dashboardCtrl.getCat()">
+<div class="panel panel-default">
+  	<div class="panel-heading">
+  		Your role is <button type="button" class="btn btn-info">{{globals.userSession.role}} </button>
+  	</div>
+  	
+  	
+  	<div class="panel-body table-responsive">
+  		<table class="table table-hover">
+			<thead>
+		      <tr class="success">
+		        <th>#</th>
+		        <th>Project Name</th>
+		        <th>Description</th>
+		        <th>Amount Goal</th>
+		        <th>Start Date</th>
+		        <th>End Date</th>
+		        <th style="width: 10%">Category</th>
+		        <th></th>
+		        <th></th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr ng-repeat="p in dashboardCtrl.projects" ng-click="dashboardCtrl.viewService(p.projectId)">
+		        <td>{{p.projectId}}</td>
+		        <td>{{p.projectName}}</td>
+		        <td>{{p.projectDesc}}</td>
+		        <td>${{p.amountGoal}}</td>
+		        <td>{{p.dayStart}}</td>
+		        <td>{{p.dayEnd}}</td>
+		        <td>{{p.category}}</td>
+		        
+		        <td>
+		        	<button type="button" class="btn btn-primary"
+		        	ng-click="dashboardCtrl.updateProject(p.projectId)">Update</button>
+		        </td>
+		        
+		        <td>
+		        	<button type="button"class="btn btn-danger"
+		        	ng-click="dashboardCtrl.deleteProject(p.projectId)">Delete</button>
+		        </td>
+		        
+		      </tr>
+		    </tbody>
+		    <tfoot>
+		    	<th></th>
+		        <th> <input class="form-control" ng-model="dashboardCtrl.inputs.projectName" placeholder="Name"/> </th>
+		        <th> <input class="form-control" ng-model="dashboardCtrl.inputs.projectDesc" placeholder="Description"/> </th>
+		        <th> <input class="form-control" ng-model="dashboardCtrl.inputs.amountGoal" type="number" placeholder="Number"/> </th>
+		        <th> <input class="form-control" ng-model="dashboardCtrl.inputs.dayStart" type="date" placeholder="MM/DD/YYYY"/> </th>
+		        <th> <input class="form-control" ng-model="dashboardCtrl.inputs.dayEnd" type="date" placeholder="MM/DD/YYYY"/> </th>
+		        
+		        <th>
+			        <select class="form-control" ng-model="dashboardCtrl.inputs.category">
+						<option ng-repeat="c in dashboardCtrl.categories" value="{{c.categoryName}}">{{c.categoryName}}</option>
+					</select> 
+				</th>
+		        
+		        <th>
+		        	<button type="button" class="btn btn-success"
+		        	ng-click="dashboardCtrl.addProject()">Add </button>
+		        </th>
+		        
+		        <th></th>
+		    </tfoot>
+		</table>
+  	
+  	
+	</div>
+  
+</div>
+</div>

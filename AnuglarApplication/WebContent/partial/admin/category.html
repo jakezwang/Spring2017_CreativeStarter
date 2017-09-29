@@ -1,0 +1,13 @@
+<div id="editcat" ng-init="dashboardCtrl.init(); dashboardCtrl.getCat()"> <!-- ng-init="dashboardCtrl.init0()" -->
+	<div class="btn-group-vertical" ng-repeat="c in dashboardCtrl.categories">
+	  	<button type="button" class="btn btn-primary" >{{c.categoryName}}</button>
+	  	<button type="button"class="btn btn-danger"
+			ng-click="dashboardCtrl.deleteCat(c.categoryName)">Delete</button>
+	</div>
+	
+	<input style="width:5%" class="form-control" ng-model="dashboardCtrl.inputsCC.categoryName" placeholder="Name"/>
+	<button type="button" class="btn btn-success"
+			ng-click="dashboardCtrl.addCat(dashboardCtrl.inputsCC.categoryName)">Add </button>
+</div>
+
+<!------------------------------------- Manage Project ------------------------------------->

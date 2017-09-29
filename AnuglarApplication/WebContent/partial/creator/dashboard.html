@@ -1,0 +1,77 @@
+<div id="editcat"> <!-- ng-init="dashboardCtrl.init0()" -->
+	<button type="button" class="btn btn-default">Current Categories</button>
+	<div class="btn-group-vertical" ng-repeat="c in dashboardCtrl.categories">
+	  	<button type="button" class="btn btn-primary" >{{c.categoryName}}</button>
+	</div>
+	<button type="button" class="btn btn-success"
+			ng-click="dashboardCtrl.addCat(dashboardCtrl.inputsCC.categoryName)">Add </button>
+</div>
+
+<!------------------------------------- Manage Project ------------------------------------->
+Your role is <button type="button" class="btn btn-default">{{globals.userSession.role}} </button>
+
+<div id="editprojects" class="page-header" ng-init="dashboardCtrl.init(); dashboardCtrl.getCat()">
+	<div class="panel panel-default">
+	  	<div class="panel-heading">
+	  		<strong>Manage Your Projects</strong>
+	  	</div>
+	  	<div class="panel-body table-responsive">
+	  		<table class="table table-hover">
+				<thead>
+			      <tr class="success">
+			        <th>#</th>
+			        <th>Project Name</th>
+			        <th>Description</th>
+			        <th>Amount Goal</th>
+			        <th>Start Date</th>
+			        <th>End Date</th>
+			        <th style="width: 10%">Category</th>
+			        <th></th>
+			        <th></th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr ng-repeat="p in dashboardCtrl.projects" >
+			        <td>{{p.projectId}}</td>
+			        <td ng-click="dashboardCtrl.viewService(p.projectId)">{{p.projectName}}</td>
+			        <td>{{p.projectDesc}}</td>
+			        <td>{{p.amountGoal | currency}}</td>
+			        <td>{{p.dayStart | date}}</td>
+			        <td>{{p.dayEnd | date}}</td>
+			        <td>{{p.category}}</td>
+			        <td>
+			        	<button type="button" class="btn btn-primary"
+			        	ng-click="dashboardCtrl.updateProject(p.projectId)">Update</button>
+			        </td>
+			        
+			        <td>
+			        	<button type="button"class="btn btn-danger"
+			        	ng-click="dashboardCtrl.deleteProject(p.projectId)">Delete</button>
+			        </td>
+			      </tr>
+			    </tbody>
+			    <tfoot>
+			    	<th></th>
+			        <th> <input class="form-control" ng-model="dashboardCtrl.inputs.projectName" placeholder="Name"/> </th>
+			        <th> <input class="form-control" ng-model="dashboardCtrl.inputs.projectDesc" placeholder="Description"/> </th>
+			        <th> <input class="form-control" ng-model="dashboardCtrl.inputs.amountGoal" type="number" placeholder="Number"/> </th>
+			        <th> <input class="form-control" ng-model="dashboardCtrl.inputs.dayStart" type="date" placeholder="MM/DD/YYYY"/> </th>
+			        <th> <input class="form-control" ng-model="dashboardCtrl.inputs.dayEnd" type="date" placeholder="MM/DD/YYYY"/> </th>
+			        
+			        <th>
+				        <select class="form-control" ng-model="dashboardCtrl.inputs.category">
+							<option ng-repeat="c in dashboardCtrl.categories" value="{{c.categoryName}}">{{c.categoryName}}</option>
+						</select> 
+					</th>
+			        <th>
+			        	<button type="button" class="btn btn-success"
+			        	ng-click="dashboardCtrl.addProject()">Add </button>
+			        </th>
+	
+			        <th></th>
+			    </tfoot>
+			</table>
+		</div>
+	</div>
+</div>
+

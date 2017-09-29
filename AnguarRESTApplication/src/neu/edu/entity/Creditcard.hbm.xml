@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 26, 2017 9:36:03 PM by Hibernate Tools 5.2.1.Final -->
+<hibernate-mapping>
+    <class name="neu.edu.entity.Creditcard" table="creditcard" catalog="ksdb" optimistic-lock="version">
+        <id name="cardId" type="java.lang.Integer">
+            <column name="cardId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="users" class="neu.edu.entity.Users" fetch="select">
+            <column name="userId" />
+        </many-to-one>
+        <property name="cardNumber" type="string">
+            <column name="cardNumber" length="45" />
+        </property>
+        <property name="cardFullName" type="string">
+            <column name="cardFullName" length="45" />
+        </property>
+        <property name="cardType" type="string">
+            <column name="cardType" length="45" />
+        </property>
+        <property name="cardExpireDate" type="string">
+            <column name="cardExpireDate" length="45" />
+        </property>
+        <property name="cardSecurity" type="string">
+            <column name="cardSecurity" length="45" />
+        </property>
+        <set name="services" table="service" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="creditcardId" />
+            </key>
+            <one-to-many class="neu.edu.entity.Service" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,56 @@
+<div ng-init="donateCtrl.getCC()">
+	<div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+			<div class="panel-heading">
+			    <h3 class="panel-title">
+			        Donation Detail for Project ID <button type="button" class="btn btn-default">{{donateProjectId}}</button>
+			    </h3>
+			</div>
+			<div class="panel-body">
+				<form role="form">
+					<div class="row">
+						<div class="col-xs-6 col-md-6" class="control-group">
+							<label class="control-label">Donation Amount</label>
+							<div class="controls">
+							     <input ng-model="donateCtrl.inputs.paymentAmount" type="number" class="form-control" placeholder="$" required  />
+							</div>
+						</div>
+						<div class="col-xs-6 col-md-6 pull-right">
+						    <div class="form-group">
+						        <label>Today's Date</label>
+						        <input ng-model="donateCtrl.inputs.paymentDate" type="date" class="form-control" id="datePicker" required />
+						    </div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-6 col-md-6">
+						    <div class="form-group">
+						    	<label>Payment Confirm</label>
+						        <select class="form-control">
+								  <option value="Paid">Yes. Pay Now</option>
+								  <option value="Unpaid">No. Pay Later</option>
+								</select>
+						    </div>
+						</div>
+						<div class="col-xs-6 col-md-6 pull-right">
+						    <div class="form-group">
+						    	<label>Select Credit Card# to Pay</label>
+						        <select class="form-control" ng-model="donateCtrl.ccId">
+								  <option ng-repeat="c in donateCtrl.ccs" value="{{c.cardId}}">{{c.cardNumber}}</option>
+								</select>
+						    </div>
+						</div>
+					</div>
+					<div class="row" style="margin: 3px">
+						<input class="btn btn-success btn-lg btn-block" role="submit" ng-click="donateCtrl.pay()" value="Pay"/>
+					</div>
+					<div class="row" style="margin: 3px;margin-top: 2%;">
+						<input class="btn btn-danger btn-lg btn-block" role="button" ng-click="donateCtrl.back()" value="Cancel"/>
+					</div>
+				</form>
+			</div>
+        </div>
+        <br/>
+        
+    </div>
+</div>

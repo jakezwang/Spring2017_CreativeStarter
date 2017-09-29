@@ -1,0 +1,65 @@
+
+<!------------------------------------- Manage Credit Cards ------------------------------------->
+
+<div id="editccs" class="page-header" ng-init="dashboardCtrl.init1()">
+	<div class="panel panel-default">
+	  	<div class="panel-heading">
+	  		<strong>Manage Your Credit Cards</strong>
+	  	</div>
+	  	<div class="panel-body table-responsive">
+	  		<table class="table table-hover">
+				<thead>
+			      <tr class="success">
+			        <th>#</th>
+			        <th>Card Number</th>
+			        <th>Card Full Name</th>
+			        <th>Card Type</th>
+			        <th>Expire Date</th>
+			        <th>Security</th>
+			        <th></th>
+			        <th></th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr ng-repeat="c in dashboardCtrl.ccs" >
+			        <td>{{c.cardId}}</td>
+			        <td ng-click="dashboardCtrl.viewService2(c.cardId)">{{c.cardNumber}}</td>
+			        <td>{{c.cardFullName}}</td>
+			        <td>{{c.cardType}}</td>
+			        <td>{{c.cardExpireDate | date}}</td>
+			        <td>{{c.cardSecurity}}</td> 
+			        <td>
+			        	<button type="button" class="btn btn-primary"
+			        	ng-click="dashboardCtrl.updateCC(c.ccId)">Update</button>
+			        </td>
+			        
+			        <td>
+			        	<button type="button"class="btn btn-danger"
+			        	ng-click="dashboardCtrl.deleteCC(c.ccId)">Delete</button>
+			        </td>
+			      </tr>
+			    </tbody>
+			    <tfoot>
+			    	<th></th>
+			        <th> <input class="form-control" type="number" ng-model="dashboardCtrl.inputsCC.cardNumber" placeholder="Credit Card Number"/> </th>
+			        <th> <input class="form-control" ng-model="dashboardCtrl.inputsCC.cardFullName" placeholder="Owner Name"/> </th>
+			        <th> 
+						<select class="form-control" ng-model="dashboardCtrl.inputsCC.cardType">
+							<option value="VISA">VISA</option>
+							<option value="VISA">Master</option>
+							<option value="VISA">AMEX</option>
+						</select> 
+					</th>
+					<th> <input class="form-control" type="date" ng-model="dashboardCtrl.inputsCC.cardExpireDate" placeholder="Card Expire Date"/> </th>
+					<th> <input class="form-control" type="number" ng-model="dashboardCtrl.inputsCC.cardSecurity" placeholder="Security Code"/> </th>
+			        <th>
+			        	<button type="button" class="btn btn-success"
+			        	ng-click="dashboardCtrl.addCC()">Add </button>
+			        </th>
+	
+			        <th></th>
+			    </tfoot>
+			</table>
+		</div>
+	</div>
+</div>

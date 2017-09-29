@@ -1,0 +1,219 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.js"></script>
+<script>
+$(document).ready(function(){
+	$.validate({
+	    lang: 'es'
+	  });
+	$('#password_confirmation').focusout(function(){
+        var pass = $('#password').val();
+        var pass2 = $('#password_confirmation').val();
+        if(pass != pass2){
+            $("#checkPass").html("Passwords do not match.");
+        } else {
+            $("#checkPass").html('');
+        }
+
+        });
+    });
+    
+	$(function () {
+	    $('.button-checkbox').each(function () {
+	
+	    // Settings
+	    var $widget = $(this),
+	    $button = $widget.find('button'),
+	    $checkbox = $widget.find('input:checkbox'),
+	    color = $button.data('color'),
+	    settings = {
+	        on: {
+	            icon: 'glyphicon glyphicon-check'
+	        },
+	        off: {
+	            icon: 'glyphicon glyphicon-unchecked'
+	        }
+	    };
+	
+	    // Event Handlers
+	    $button.on('click', function () {
+	        $checkbox.prop('checked', !$checkbox.is(':checked'));
+	        $checkbox.triggerHandler('change');
+	        updateDisplay();
+	    });
+	    $checkbox.on('change', function () {
+	        updateDisplay();
+	    });
+	
+	    // Actions
+	    function updateDisplay() {
+	        var isChecked = $checkbox.is(':checked');
+	
+	        // Set the button's state
+	        $button.data('state', (isChecked) ? "on" : "off");
+	
+	        // Set the button's icon
+	        $button.find('.state-icon')
+	        .removeClass()
+	        .addClass('state-icon ' + settings[$button.data('state')].icon);
+	
+	        // Update the button's color
+	        if (isChecked) {
+	            $button
+	            .removeClass('btn-default')
+	            .addClass('btn-' + color + ' active');
+	             $('input[type="submit"]').prop('disabled', false);
+	        }
+	        else {
+	            $button
+	            .removeClass('btn-' + color + ' active')
+	            .addClass('btn-default');
+	            $('input[type="submit"]').prop('disabled', true);
+	        }
+	    }
+	
+	    // Initialization
+	    function init() {
+	
+	        updateDisplay();
+	
+	        // Inject the icon if applicable
+	        if ($button.find('.state-icon').length == 0) {
+	            $button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i>');
+	        }
+	    }
+	    init();
+	});
+}
+
+
+
+</script>
+
+
+
+
+
+
+<div class='container'>
+	<div class='panel panel-primary dialog-panel'>
+		<div class='panel-heading'>
+			<h5>Register your account here. </h5>
+		</div>
+		<div class='panel-body'>
+			<form class='form-horizontal' role='form'>
+				<div class="form-group">
+					<div ng-show="regCtrl.error" align="center"
+						class="col-sm-offset-2 col-sm-2 alert alert-danger">{{regCtrl.message}}</div>
+				</div>
+                
+<!-- -----------------------------------------------------------------------------   -->
+				<div class='form-group'>
+					<label class='control-label col-md-3'
+						for='id_email'>Username</label>
+					<div class='col-md-6'>
+						<div class='form-group'>
+							<div class='col-md-12'>
+								<input class='form-control' id='id_username'
+									placeholder='Username' ng-model="regCtrl.registration.userName"
+									type='text' required data-validation="alphanumeric">
+							</div>
+						</div>
+					</div>
+				</div>
+                
+                <div class='form-group'>
+					<label class='control-label col-md-3'for='id_title'>Name</label>
+					<div class='col-md-6'>
+						<div class='col-md-5 indent-small'>
+							<div class='form-group internal'>
+								<input class='form-control' id='id_first_name'
+									ng-model="regCtrl.registration.firstName"
+									placeholder='First Name' type='text' required pattern="^[A-z]+$" data-validation-error-msg="First Name only contains alphabets">
+							</div>
+						</div>
+                        <div class='col-md-2 indent-small'></div>
+						<div class='col-md-5 indent-small' >
+							<div class='form-group internal'>
+								<input class='form-control' id='id_last_name'
+									ng-model="regCtrl.registration.lastName"
+									placeholder='Last Name' type='text' required pattern="^[A-z]+$" data-validation-error-msg="Last Name only contains alphabets">
+							</div>
+						</div>
+					</div>
+				</div>
+                
+				
+                
+				<div class='form-group'>
+					<label class='control-label col-md-3'
+						for='id_email'>Password</label>
+					<div class='col-md-6'>
+						<div class='col-md-5 indent-small'>
+							<div class='form-group'>
+								<input class='form-control' id='password'
+									placeholder='Password' ng-model="regCtrl.registration.password"
+									type='password' required>
+							</div>
+						</div>
+						<div class='col-md-2 indent-small'></div>
+						<div class='col-md-5 indent-small' >
+							<div class='form-group'>
+								<input class='form-control' id='password_confirmation' 
+								placeholder='Re-type Password' type='password' required>
+							</div>
+						</div>
+					</div>
+				</div>
+                
+                <div class='form-group'>
+					<label class='control-label col-md-3'
+						for='id_email'>User Type</label>
+					<div class='col-md-6'>
+						<div class='form-group'>
+							<div class='col-md-12'>
+                                <select ng-model="regCtrl.registration.type" name="typeList" id='id_type' class='form-control' required>
+                                  <option value="Creator">Creator (Artist/Photographer)</option>
+                                  <option value="Customer">Customer (Investor/Supporter)</option>
+                                </select>
+							</div>
+						</div>
+
+					</div>
+				</div>
+                
+				<div class='form-group'>
+					<label class='control-label col-md-3'
+						for='id_email'>E-mail</label>
+					<div class='col-md-6'>
+						<div class='form-group'>
+							<div class='col-md-12'>
+								<input class='form-control' id='id_email' placeholder='E-mail'
+									ng-model="regCtrl.registration.email" type='text' required>
+							</div>
+						</div>
+
+					</div>
+				</div>
+	
+
+				<div class='form-group'>
+					<div class='col-md-offset-3 col-md-3'>
+						<button class='btn btn-primary' ng-click="regCtrl.register()"
+							type='submit'>Register</button>
+					</div>
+					<div class='col-md-3'>
+						<button class='btn btn-danger' ng-click="regCtrl.cancel()"
+							style='' type='submit'>Cancel..</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+    $.validate({
+        modules: 'html5',
+    });
+</script>

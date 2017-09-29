@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 26, 2017 9:36:03 PM by Hibernate Tools 5.2.1.Final -->
+<hibernate-mapping>
+    <class name="neu.edu.entity.Category" table="category" catalog="ksdb" optimistic-lock="version">
+        <id name="categoryName" type="string">
+            <column name="categoryName" length="45" />
+            <generator class="assigned" />
+        </id>
+        <property name="categoryShow" type="string">
+            <column name="categoryShow" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>
